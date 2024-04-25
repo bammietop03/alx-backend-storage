@@ -5,7 +5,7 @@ DELIMITER //
 
 CREATE PROCEDURE ComputeAverageScoreForUser(IN user_id INT)
 BEGIN
-	DECLARE average_score_new DECIMAL;
+	DECLARE average_score_new FLOAT;
 
 	SELECT AVG(score) INTO average_score_new
 	FROM corrections
