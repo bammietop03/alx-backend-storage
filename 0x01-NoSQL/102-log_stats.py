@@ -7,7 +7,7 @@ from pymongo import MongoClient
 def log_stats():
     """ Count number of logs with method=GET and path=/status"""
     # Connect to MongoDB
-    client = MongoClient()
+    client = MongoClient('mongodb://127.0.0.1:27017')
     db = client.logscollection = db.nginx
 
     # Count total number of logs
