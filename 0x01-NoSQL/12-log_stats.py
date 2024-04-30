@@ -3,7 +3,6 @@
 from pymongo import MongoClient
 
 
-#def log_stats():
 if __name__ == "__main__":
     """ Count number of logs with method=GET and path=/status"""
 
@@ -13,20 +12,17 @@ if __name__ == "__main__":
 
     # Count total number of logs
     total_logs = collection.count_documents({})
-    print("{} logs".format(total_logs))
+    print(f'{total_logs} logs')
 
     # Count number of logs for each method
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     print('Methods:')
     for method in methods:
         count = collection.count_documents({"method": method})
-        print("\tmethod {}: {}".format(method, count))
+        print(f'\tmethod {method}: {count}')
 
     # Count number of logs with method=GET and path=/status
     status_check_count = collection.count_documents(
             {"method": "GET", "path": "/status"})
-    print("{} status check".format(status_check_count))
 
-
-#if __name__ == "__main__":
-#   log_stats()
+    print(f'{status_check} status check')
