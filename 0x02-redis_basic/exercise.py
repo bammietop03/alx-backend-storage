@@ -5,7 +5,7 @@ flush the instance using flushdb"""
 
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable, Optional
 
 
 class Cache:
