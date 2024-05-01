@@ -21,7 +21,8 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[callable] = None) -> Union[str, bytes, int]:
+    def get(self, key: str,
+            fn: Optional[callable] = None) -> Union[str, bytes, int, float]:
         """ get a value of a specific key with callable function added """
         data = self._redis.get(key)
         if data is None:
@@ -32,8 +33,14 @@ class Cache:
 
     def get_str(self, key: str) -> Union[str, bytes]:
         """ Converts btye to str """
-        return self.get(key, fn=lambda d: d.decode("utf-8"))
+        value = self._redis.get(key)
+        return value.decode("utf-8")
 
     def get_int(self, key: str) -> int:
         """ Convert byte to int """
-        return self.get(key, fn=int)
+        value = self._redis.get(key)
+        try:
+            value = int(value.decode("utf-8"))
+        except Exception:
+            value = 0
+        return value
