@@ -25,11 +25,9 @@ class Cache:
             fn: Optional[callable] = None) -> Union[str, bytes, int, float]:
         """ get a value of a specific key with callable function added """
         data = self._redis.get(key)
-        if data is None:
-            return None
-        if fn is not None:
-            return fn(data)
-        return data
+        if fn:
+            value = fn(value)
+        return value
 
     def get_str(self, key: str) -> Union[str, bytes]:
         """ Converts btye to str """
