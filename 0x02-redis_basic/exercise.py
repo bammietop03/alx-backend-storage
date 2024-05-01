@@ -21,7 +21,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int]:
+    def get(self, key: str, fn: Optional[callable] = None) -> Union[str, bytes, int]:
         """ get a value of a specific key with callable function added """
         data = self._redis.get(key)
         if data is None:
