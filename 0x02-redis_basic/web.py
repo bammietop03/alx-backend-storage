@@ -8,7 +8,7 @@ import time
 
 
 def get_page(url: str) -> str:
-    # Initialize Redis connection
+    """ Initialize Redis connection"""
     r = redis.Redis()
 
     # Increment access count for the URL
